@@ -5,7 +5,7 @@ A CLI Tool for making experiments on a few sorting algorithms
 Even though it is a CLI application, it is possible to execute this using CMake, with minimum version 3.17.
 
 If you don't want to use CMake, clone this repository and type
->g++ -o main *.cpp;./main
+>g++ -o main *.cpp;.\main
 
 ### Remarks
 - The tool experiments a soring algorithm at least 5 seconds, regardless of the size of the list, for better precision. 
