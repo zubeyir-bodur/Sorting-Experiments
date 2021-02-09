@@ -47,7 +47,7 @@ void mergeSort(int* arr, const int size,
 }
 
 void mergeSort(int* arr,
-               const int first, const int last,
+               const int& first, const int& last,
                int &compCount,
                int &moveCount) {
 
@@ -60,13 +60,13 @@ void mergeSort(int* arr,
 }
 
 void merge(int* arr,
-           const int first, const int mid, const int last,
+           const int& first, const int& mid, const int& last,
            int &compCount,
            int &moveCount) {
 
     const int size = last - first + 1;
 
-    int temp[size];
+    int* temp = new int[size];
     int first1 = first;
     int last1 = mid;
     int first2 = mid + 1;
@@ -110,36 +110,60 @@ void merge(int* arr,
         arr[i] = temp[i];
         moveCount++;
     }
+    delete[] temp;
 }
 
 void quickSort(int* arr,
                const int size,
                int &compCount,
                int &moveCount) {
-    compCount = 0; moveCount = 0;
-    quickSort(arr, 0, size - 1, compCount, moveCount);
+    compCount = 0;
+    moveCount = 0;
+    int first = 0;
+    int last = size - 1;
+    quickSort(arr, first, last, compCount, moveCount);
 }
 
+/**
+ * @param arr
+ * @param first
+ * @param last
+ * @param compCount
+ * @param moveCount
+ */
 void quickSort(int* arr,
-               const int first, const int last,
+               int& first, int& last,
                int &compCount,
                int &moveCount) {
-
-    if (first < last) {
-        int pivotIndex = 0;
+    int pivotIndex;
+    while (first < last) {
         partition(arr, first, last, pivotIndex, compCount, moveCount);
-        quickSort(arr, first, pivotIndex, compCount, moveCount);
-        quickSort(arr, pivotIndex + 1, last, compCount, moveCount);
+        // sort the partition who holds the pivot only
+        if (pivotIndex - first < last - pivotIndex ) {
+            int l2 = pivotIndex - 1;
+            quickSort(arr, first, l2, compCount, moveCount);
+            first = pivotIndex + 1;
+        }
+        else {
+            int f2 = pivotIndex + 1;
+            quickSort(arr, f2, last, compCount, moveCount);
+            last = pivotIndex - 1;
+        }
     }
+//    if (first < last) {
+//        int pivotIndex;
+//        partition(arr, first, last, pivotIndex, compCount, moveCount);
+//        quickSort(arr, first, pivotIndex, compCount, moveCount);
+//        quickSort(arr, pivotIndex + 1, last, compCount, moveCount);
+//    }
 }
-
 
 void partition(int* arr,
-               const int first, const int last,
+               int& first, int& last,
                int& pivotIndex,
-               int &compCount,
-               int &moveCount) {
-    int pivot = arr[first]; // take first item as pivot
+               int& compCount,
+               int& moveCount) {
+    pivotIndex = first; // take first item as the pivot
 
     // initially, everything but pivot is unknown
     int lastS1 = first;           // index of last item in S1
@@ -150,11 +174,11 @@ void partition(int* arr,
 
         // move item from unknown
         compCount++;
-        if (arr[firstUnknown] < pivot) { // belongs to S1
+        if (arr[firstUnknown] < arr[pivotIndex]) { // belongs to S1
             lastS1++;
             swap( arr[firstUnknown], arr[lastS1]);
             moveCount += 3;
-        }   // else belongs to S2
+        } // else belongs to S2
         firstUnknown++;
     }
     // place pivot after S1 and save index
@@ -186,7 +210,7 @@ void mergeReverse(int* arr,
                   const int& last) {
     const int size = last - first + 1;
 
-    int temp[size];
+    int* temp = new int[size];
     int first1 = first;
     int last1 = mid;
     int first2 = mid + 1;
@@ -225,4 +249,5 @@ void mergeReverse(int* arr,
     for (int i = first; i <= size; i++) {
         arr[i] = temp[i];
     }
+    delete [] temp;
 }

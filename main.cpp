@@ -50,8 +50,14 @@ void revert(int* arr, const int size, OrderType order) {
         descend(arr, size);
 }
 
+void print(int* arr, const int& size) {
+    for (int i = 0; i < size; i++)
+        cout << arr[i] << " - ";
+    cout << endl;
+}
+
 /**
- * Measure the time passed for one function call
+ * Measure the time passed for one function call in ms
  * @param sort
  * @param arr
  * @param size
@@ -66,13 +72,15 @@ double measureTime(SortType sort, int* arr, const int size, OrderType order, int
     int noOfCalls = 0;
     // execute sort function for 5 seconds
     do {
+        // start sort
         sort(arr, size, compCount, moveCount);
+        // stop counting
         timePassed = timePassed + clock() - start;
-        start = clock();
         noOfCalls++;
         // revert the function into its original order
-        // and don't include the time passed while doing so
         revert(arr, size, order);
+        // start counting again
+        start = clock();
     } while ( timePassed < 5000l);
     return (1000 * (double)timePassed / CLOCKS_PER_SEC) / noOfCalls;
 }
@@ -88,10 +96,7 @@ void initValues(int* arr, const int size, OrderType order) {
     }
 }
 
-
-
 int main() {
-    random_device randomDevice;
     string input;
     cout << "\nSORTING EXPERIMENTS in CLI, by Zubeyir Bodur" << endl;
     cout << "\nEnter number of each drop down menu to choose\n" << endl;

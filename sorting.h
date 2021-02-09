@@ -16,7 +16,7 @@ void mergeSort(int* arr, const int size,
                int &compCount,
                int &moveCount);
 
-void mergeSort(int* arr, const int first, const int last,
+void mergeSort(int* arr, const int& first, const int& last,
                int &compCount,
                int &moveCount);
 
@@ -24,17 +24,17 @@ void quickSort(int* arr, const int size,
                int &compCount,
                int &moveCount);
 
-void quickSort(int* arr, const int first, const int last,
-               int &compCount,
-               int &moveCount);
-
 void merge(int* arr,
-           const int first, const int mid, const int last,
+           const int& first, const int& mid, const int& last,
            int &compCount,
            int &moveCount);
 
+void quickSort(int* arr, int& first, int& last,
+               int &compCount,
+               int &moveCount);
+
 void partition(int* arr,
-               const int first, const int last,
+               int& first, int& last,
                int& pivotIndex,
                int &compCount,
                int &moveCount);
@@ -49,6 +49,5 @@ void mergeReverse(int* arr,
                   const int& first,
                   const int& mid,
                   const int& last);
-
 
 #endif
