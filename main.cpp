@@ -1,8 +1,6 @@
 /**
- * Title: Algorithm Efficiency and Sorting
+ * Algorithm Efficiency and Sorting
  * Author: Zubeyir Bodur
- * ID: 21702382
- * Assignment: 1
  * Description: Main function and other global functions
  * that make main easier to write
  */

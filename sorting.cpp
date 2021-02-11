@@ -1,11 +1,9 @@
 /**
  * Title: Algorithm Efficiency and Sorting
- * Author: Zubeyir Bodur
- * ID: 21702382
- * Assignment: 1
+ * Zubeyir Bodur
  * Description: Source file for sorting functions
  *
- * In this assignment, only important moves and comparisons are
+ * In this experiment, only important moves and comparisons are
  * counted.
  *
  * For instance, assignments and comparisons that always occur are not

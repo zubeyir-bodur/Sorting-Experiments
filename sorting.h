@@ -1,8 +1,6 @@
 /**
- * Title: Algorithm Efficiency and Sorting
+ * Algorithm Efficiency and Sorting
  * Author: Zubeyir Bodur
- * ID: 21702382
- * Assignment: 1
  * Description: Header file for sorting functions
  */
 #ifndef HW1_SORTING_H
